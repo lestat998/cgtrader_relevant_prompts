@@ -89,6 +89,7 @@ GEM
     debug (1.9.1)
       irb (~> 1.10)
       reline (>= 0.3.8)
+    diff-lcs (1.5.0)
     elastic-transport (8.3.0)
       faraday (< 3)
       multi_json
@@ -98,6 +99,13 @@ GEM
     elasticsearch-api (8.11.0)
       multi_json
     erubi (1.12.0)
+    factory_bot (6.4.5)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.4.3)
+      factory_bot (~> 6.4)
+      railties (>= 5.0.0)
+    faker (3.2.2)
+      i18n (>= 1.8.11, < 2)
     faraday (2.9.0)
       faraday-net_http (>= 2.0, < 3.2)
     faraday-net_http (3.1.0)
@@ -193,6 +201,23 @@ GEM
     reline (0.4.2)
       io-console (~> 0.5)
     rexml (3.2.6)
+    rspec-core (3.12.2)
+      rspec-support (~> 3.12.0)
+    rspec-expectations (3.12.3)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.12.0)
+    rspec-mocks (3.12.6)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.12.0)
+    rspec-rails (6.1.0)
+      actionpack (>= 6.1)
+      activesupport (>= 6.1)
+      railties (>= 6.1)
+      rspec-core (~> 3.12)
+      rspec-expectations (~> 3.12)
+      rspec-mocks (~> 3.12)
+      rspec-support (~> 3.12)
+    rspec-support (3.12.1)
     rubyzip (2.3.2)
     searchkick (5.3.1)
       activemodel (>= 6.1)
@@ -242,12 +267,15 @@ DEPENDENCIES
   capybara
   debug
   elasticsearch
+  factory_bot_rails
+  faker
   importmap-rails
   jbuilder
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.8)
   redis (~> 4.0)
+  rspec-rails
   searchkick
   selenium-webdriver
   sprockets-rails
