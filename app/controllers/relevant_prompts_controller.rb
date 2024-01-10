@@ -3,7 +3,16 @@ class RelevantPromptsController < ApplicationController
   end
 
   def search_prompts
-    puts "searching for prompts"
-    render json: { "prompts": ["prompt1", "prompt2", "prompt3"] }
+    @prompts = search
+    render json: @prompts
+  end
+
+  private
+  def prompt_params
+    params.permit(:words)
+  end
+
+  def search
+    RelevantPrompt.search(prompt_params[:words])
   end
 end

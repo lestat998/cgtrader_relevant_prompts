@@ -10,30 +10,48 @@ export default class extends Controller {
   next(event) {
     event.preventDefault();
     this.queryRelevantPrompts();
-    this.wordsTarget.value = "";
+    this.clearWordsInput();
   }
 
   clearList(event) {
     console.log("clear button clicked");
-    this.responseTarget.innerHTML = "";
+    this.clearResponseContent();
   }
 
   queryRelevantPrompts() {
     const words = this.wordsTarget.value;
+    this.clearResponseContent();
     fetch(`/search_prompts?words=${encodeURIComponent(words)}`)
-        .then(response => response.json()).then(data => {
-            const { prompts } = data;
-            if (prompts.length === 0) {
-                this.responseTarget.insertAdjacentHTML("beforeend", ` <li class="list"">
-              <span class="prompt">You have no relevant prompts.</span>
-            </li>`);
-            } else {
-                prompts.forEach(prompt => {
-                  this.responseTarget.insertAdjacentHTML("beforeend", ` <li class="list"">
-              <span class="prompt">${prompt}</span>
-            </li>`);
-                });
-            }
-    })
+      .then(response => response.json())
+      .then(data => this.updateResponse(data));
+  }
+
+  clearWordsInput() {
+    this.wordsTarget.value = "";
+  }
+
+  clearResponseContent() {
+    this.responseTarget.innerHTML = "";
+  }
+
+  updateResponse(data) {
+    const { query } = data;
+    if (query.length === 0) {
+      this.addNoPromptsMessage();
+    } else {
+      query.forEach(prompt => this.addPromptToList(prompt));
+    }
+  }
+
+  addNoPromptsMessage() {
+    this.responseTarget.insertAdjacentHTML("beforeend", `<li class="list">
+      <span class="prompt">You have no relevant prompts.</span>
+    </li>`);
+  }
+
+  addPromptToList(prompt) {
+    this.responseTarget.insertAdjacentHTML("beforeend", `<li class="list">
+      <span class="prompt">${prompt.value}</span>
+    </li>`);
   }
 }
