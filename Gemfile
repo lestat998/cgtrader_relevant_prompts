@@ -50,6 +50,10 @@ gem "searchkick"
 
 # Use elasticsearch for search
 gem "elasticsearch"
+
+# Use activerecord-import for bulk import
+gem "activerecord-import"
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
