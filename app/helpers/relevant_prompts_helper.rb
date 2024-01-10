@@ -1,0 +1,2 @@
+module RelevantPromptsHelper
+end
