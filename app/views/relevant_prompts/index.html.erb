@@ -1,13 +1,12 @@
-<div class="container">
+<div class="container" data-controller="relevant-prompts">
   <div class="input-field">
-    <textarea placeholder="Find your relevant prompts"></textarea>
+    <textarea data-relevant-prompts-target="words" placeholder="Find your relevant prompts" data-action="keydown.enter->relevant-prompts#next"></textarea>
     <i class="uil uil-notes note-icon"></i>
   </div>
 
-  <ul class="promptLists"></ul>
+  <ul class="promptLists" data-relevant-prompts-target="response"></ul>
 
   <div class="relevant-prompts">
-    <span>You have <span class="pending-num"> no </span> relevant prompts.</span>
-    <button class="clear-button">Clear All</button>
+    <button data-action="relevant-prompts#clearList" type=button class="clear-button">Clear All</button>
   </div>
 </div>

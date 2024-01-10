@@ -112,11 +112,11 @@ textarea::-webkit-scrollbar {
     accent-color: #4070f4;
     pointer-events: none;
 }
-.promptLists .list .task {
+.promptLists .list .prompt {
     margin: 0 30px 0 15px;
     word-break: break-all;
 }
-.list input:checked ~ .task {
+.list input:checked ~ .prompt {
     text-decoration: line-through;
 }
 .promptLists .list i {
@@ -154,7 +154,6 @@ textarea::-webkit-scrollbar {
     font-size: 14px;
     border-radius: 4px;
     cursor: pointer;
-    pointer-events: none;
     white-space: nowrap;
 }
 .clear-button:hover {
