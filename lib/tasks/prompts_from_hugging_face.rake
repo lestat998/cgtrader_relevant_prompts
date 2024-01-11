@@ -54,11 +54,9 @@ namespace :hugging_face do
 
   def process_data(response)
     data = JSON.parse(response.read)
-    prompts = []
     data['rows'].each do |row|
-      prompts << RelevantPrompt.new(value: row['row']['Prompt'])
+      RelevantPrompt.create(value: row['row']['Prompt'])
     end
-    RelevantPrompt.import! prompts
   end
 
   def handle_error(error, retries)

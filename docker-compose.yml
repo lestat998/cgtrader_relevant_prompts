@@ -1,0 +1,30 @@
+version: '1'
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: user
+      POSTGRES_DB: cgtrader_relevant_prompts_development
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.2.2
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+  web:
+    build: .
+    command: ./up.sh
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+      - elasticsearch
+    environment:
+      RAILS_ENV: development
+      DATABASE_URL: postgres://user:password@db/cgtrader_relevant_prompts_development
+      ELASTICSEARCH_URL: http://elasticsearch:9200

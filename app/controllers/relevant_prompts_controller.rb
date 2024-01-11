@@ -5,6 +5,8 @@ class RelevantPromptsController < ApplicationController
   def search_prompts
     @prompts = search
     render json: @prompts
+  rescue StandardError
+    render json: { error: "You have no relevant prompts" }
   end
 
   private

@@ -35,17 +35,20 @@ export default class extends Controller {
   }
 
   updateResponse(data) {
-    const { query } = data;
-    if (query.length === 0) {
-      this.addNoPromptsMessage();
+    const { query, error } = data;
+    console.log(query, error)
+    if (error) {
+      this.addNoPromptsMessage(error);
+    } else if (query.length === 0) {
+      this.addNoPromptsMessage('Please try another search.');
     } else {
       query.forEach(prompt => this.addPromptToList(prompt));
     }
   }
 
-  addNoPromptsMessage() {
+  addNoPromptsMessage(error) {
     this.responseTarget.insertAdjacentHTML("beforeend", `<li class="list">
-      <span class="prompt">You have no relevant prompts.</span>
+      <span class="prompt">${error}.</span>
     </li>`);
   }
 
