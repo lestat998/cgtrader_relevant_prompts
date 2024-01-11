@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe RelevantPrompt, type: :model do
@@ -25,7 +27,7 @@ RSpec.describe RelevantPrompt, type: :model do
     it 'is valid with a value' do
       RelevantPrompt.create(value: 'Apple')
       RelevantPrompt.search_index.refresh
-      expect(["Apple"]).to eq(RelevantPrompt.search("apple").map(&:value))
+      expect(['Apple']).to eq(RelevantPrompt.search('apple').map(&:value))
     end
   end
 end
