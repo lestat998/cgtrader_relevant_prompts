@@ -6,4 +6,4 @@ rm -rf tmp/pids/server.pid
 bundle exec rails db:migrate
 
 # Start Foreman
-bundle exec foreman start
+bundle exec foreman start -f Procfile.dev
